@@ -1,9 +1,10 @@
 .hero {
-  position: relative;
+  position: fixed;
   margin: 0;
   padding: 0;
   height: 100vh;
   width: 100%;
+  z-index: 0;
   background-color: black;
   overflow: hidden;
   display: flex;
@@ -13,12 +14,17 @@
   position: absolute;
   margin: 0;
   padding: 0;
-  width: 100%; 
-  height: 70%;
+  width: 100%;
+  height: 50%;
   bottom: 0;
-  background:
-    radial-gradient(ellipse 50% 15% at 50% 36%, hsla(118, 100%, 60%, 0.35), transparent 65%);
-    filter: blur(4px);
+  background: radial-gradient(ellipse 100% 100% at 50% 0%, hsl(0, 0%, 9%), transparent 100%);
+}
+.floor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 15% at 50% 16%, hsla(118, 100%, 60%, 0.35), transparent 65%);
+  filter: blur(4px);
 }
 .nameWrapper {
   position: absolute;
@@ -51,22 +57,26 @@
   font-family: var(--font-archivo-black), impact, sans-serif;
   font-weight: 1000;
   white-space: nowrap;
-  color: hsl(118, 100%, 50%);
+  color: #fff;
   text-shadow:
-    2px 0 0 hsl(118, 100%, 40%),
-    4px 0 0 hsl(118, 100%, 30%),
-    6px 0 0 hsl(118, 100%, 25%),
-    8px 0 0 hsl(118, 100%, 20%),
-    10px 0 0 hsl(118, 100%, 15%),
-    12px 0 0 hsl(118, 100%, 10%),
-    0 0 10px #22c55e,
-    0 0 20px #22c55e,
-    0 0 40px #22c55e;
+    0 0 4px #fff,
+    0 0 6px #fff,
+    0 0 8px #fff,
+    0 0 30px #22c55e,
+    0 0 60px #22c55e,
+    0 0 90px #22c55e,
+    0 0 120px #22c55e,
+    3px 0 0 hsl(118, 100%, 40%),
+    6px 0 0 hsl(118, 100%, 30%),
+    9px 0 0 hsl(118, 100%, 25%),
+    12px 0 0 hsl(118, 100%, 20%),
+    14px 0 0 hsl(118, 100%, 15%),
+    16px 0 0 hsl(118, 100%, 10%);
 }
 .reflection {
   position: static;
   margin: 0;
-  padding: 0;
+  padding: 0 100px;
   margin-top: 36px;
   font-size: 9em;
   font-family: var(--font-archivo-black), impact, sans-serif;
@@ -75,18 +85,34 @@
   transform-origin: top; 
   letter-spacing: 0.01em;
   white-space: nowrap;
-  color: hsl(118, 100%, 50%);
   opacity: 0.3;
   -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
   mask-image: linear-gradient(to top, black 0%, transparent 90%);
+  color: #fff; 
   text-shadow:
-    2px 0 0 hsl(118, 100%, 40%),
-    4px 0 0 hsl(118, 100%, 30%),
-    6px 0 0 hsl(118, 100%, 25%),
-    8px 0 0 hsl(118, 100%, 20%),
-    10px 0 0 hsl(118, 100%, 15%),
-    12px 0 0 hsl(118, 100%, 10%),
-    14px 0 0 hsl(118, 100%, 5%),
-    0 0 20px #22c55e,
-    0 0 40px #22c55e;
+    0 0 4px #fff,
+    0 0 6px #fff,
+    0 0 8px #fff,
+    0 0 30px #22c55e,
+    0 0 60px #22c55e,
+    0 0 90px #22c55e,
+    0 0 120px #22c55e,
+    3px 0 0 hsl(118, 100%, 40%),
+    6px 0 0 hsl(118, 100%, 30%),
+    9px 0 0 hsl(118, 100%, 25%),
+    12px 0 0 hsl(118, 100%, 20%),
+    14px 0 0 hsl(118, 100%, 15%),
+    16px 0 0 hsl(118, 100%, 10%);
+}
+@keyframes neonPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.92; }
+}
+.name {
+  animation: neonPulse 3s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .name {
+    animation: none;
+  }
 }

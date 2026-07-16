@@ -1,0 +1,66 @@
+.cardContainer{
+    width: 400px;
+    height: 400px;
+    perspective: 1000px;
+    
+}
+.card{
+   width: 100%;
+   height: 100%;
+   position: relative;
+   transition: transform 1500ms;
+   transform-style: preserve-3d;
+}
+.cardContainer:hover > .card{
+    cursor: pointer;
+    transform: rotateY(180deg);
+}
+.frontCard, .backCard{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(56, 56, 56);
+    background-color: black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+}
+.frontCard{
+    box-shadow: 5px 5px 5px rgb(52, 52, 52);
+}
+.backCard{
+    transform: rotateY(180deg);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    box-shadow: 5px 5px 5px rgb(52, 52, 52);
+}
+.img{
+    display: block;
+    margin:0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.img[src="/haf.png"] {
+    background-color: white;
+}
+.name{
+    font-family: 'Orbitron';
+    font-size: 30px;
+}
+.h2{
+    font-family: 'Inter';
+    font-size: 20px;
+    opacity: 0.5;
+}
+.desc{
+    font-family: 'Inter';
+    font-size: 20px;
+    text-align: left;
+    list-style: disc;
+    list-style-position: inside;
+}

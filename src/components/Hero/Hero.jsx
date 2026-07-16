@@ -1,4 +1,5 @@
-import styles from './Hero.module.css';
+import { forwardRef } from 'react';
+import styles from './Hero.module.css'
 
 function Hero() {
   return (
@@ -10,6 +11,6 @@ function Hero() {
       </div>
     </section>
   );
-}
+};
 
 export default Hero;

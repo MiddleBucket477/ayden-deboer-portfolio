@@ -1,0 +1,13 @@
+.projExper {
+  position: relative;
+  z-index: 1;
+  padding-top: 200px;
+  padding-bottom: 200px;
+  height: 140vh;
+  margin-top: 100vh; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 150px;
+  background: linear-gradient(to bottom, transparent, black 18%, black 85%, transparent);
+}
