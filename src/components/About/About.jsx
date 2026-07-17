@@ -1,7 +1,7 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useState, useRef, useEffect } from 'react';
 
 import { TbBrandCpp, TbCircleLetterC, TbBrandJavascript, TbBrandHtml5, TbBrandCss3, TbBrandVscode, TbBinaryTree2, TbAirBalloon, TbBrandMatrix } from "react-icons/tb";
-import { FaPython, FaJava, FaGithub, FaDocker, FaLinux } from "react-icons/fa";
+import { FaPython, FaJava, FaGithub, FaDocker, FaLinux, FaCheck } from "react-icons/fa";
 import { SiUnrealengine, SiBlueprint, SiThealgorithms } from "react-icons/si";
 import { GiArtificialHive } from "react-icons/gi";
 import { MdAnimation } from "react-icons/md";
@@ -45,22 +45,93 @@ const About = forwardRef(function About(props, ref) {
     {category: "Concepts", name: "Data Structures", icon: PiTreeStructure},
     {category: "Concepts", name: "Algorithms", icon: SiThealgorithms},
     {category: "Concepts", name: "Linear Algebra", icon: TbBrandMatrix},
-    {category: "Concepts", name: "Debugging", icon: VscDebug},
-  ]
+    {category: "Concepts", name: "Debugging", icon: VscDebug}]
 
-  const me = ["spikeball.jpg", "basketball.avif", "volleyball.png", "videogames.jpg", "marriage.avif", "church.avif"]
+  const shownSkills = skills.filter((skill) => filters.find(f => f.name === skill.category && f.active))
+
+  const me = [{img: "cross.png", desc:"I am a Christian and do all my work for the glory of God.", x: 40, y: 20, vx: 0.8, vy: 1.4},
+    {img: "spikeball.png", desc:"I love spikeball, one of my favorite outdoor summer games to play.", x: 620, y: 55, vx: -1.7, vy: 0.7},
+    {img: "basketball.png", desc:"I've played basketball since I was in elementary school, holds a special place in my life.", x: 310, y: 130, vx: 1.1, vy: -1.5},
+    {img: "volleyball.png", desc:"Volleyball is one my recent interests, at the end of high school I started playing and loved it.", x: 780, y: 30, vx: -0.8, vy: 1.8},
+    {img: "videogames.png", desc:"Video games is a hobby and passion of mine, I've played them all my life and loved building my own.", x: 150, y: 110, vx: 1.8, vy: -0.9},
+    {img: "marriage.png", desc:"My wife is the most important person in my life and we've been married since August 2026.", x: 500, y: 90, vx: -1.4, vy: -1.1}]
+
+  const meItemMove = useRef(me); 
+  const itemRefs = useRef([]);
+  const frameRef = useRef(null);
+  const containerRef = useRef(null);
+  const dragRef = useRef(null)
+  
+
+  const [meItem, setMeItem] = useState(null);
+
+  useEffect(() => {
+    const loop = () => {
+      const bounds = containerRef.current.getBoundingClientRect();
+      meItemMove.current.forEach((item, index) => {  
+        if (dragRef.current?.index === index) return;
+        item.x = item.x + item.vx;
+        item.y = item.y + item.vy;
+        if (item.x <= 0) { item.x = 0; item.vx *= -1; };
+        if (item.x >= bounds.width - 100) { item.x = bounds.width - 100; item.vx *= -1; };
+        if (item.y <= 0) { item.y = 0; item.vy *= -1; };
+        if (item.y >= bounds.height - 100) { item.y = bounds.height - 100; item.vy *= -1; };
+        itemRefs.current[index].style.left = `${item.x}px`;
+        itemRefs.current[index].style.top = `${item.y}px`;
+      }); 
+
+      frameRef.current = requestAnimationFrame(loop);
+    }
+
+    frameRef.current = requestAnimationFrame(loop);
+
+    return () => cancelAnimationFrame(frameRef.current);
+  }, []);
+
+  const onMouseDown = (e, index) => {
+    const el = itemRefs.current[index];
+    el.classList.add(styles.dragging);
+    el.querySelector('img').style.opacity = '1';
+    el.querySelector('p').style.opacity = '0';
+    dragRef.current = { index, offsetX: e.clientX - meItemMove.current[index].x, offsetY: e.clientY - meItemMove.current[index].y };
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    itemRefs.current[index]
+  };
+
+  const onMouseMove = (e) => {
+    if (!dragRef.current) return;
+    const { index, offsetX, offsetY } = dragRef.current;
+    const item = meItemMove.current[index];
+    const bounds = containerRef.current.getBoundingClientRect();
+    item.x = Math.max(0, Math.min(e.clientX - offsetX, bounds.width - 100));
+    item.y = Math.max(0, Math.min(e.clientY - offsetY, bounds.height - 100));
+    itemRefs.current[index].style.left = `${item.x}px`;
+    itemRefs.current[index].style.top = `${item.y}px`;
+  };
+
+  const onMouseUp = () => {
+    const el = itemRefs.current[dragRef.current.index];
+    el.classList.remove(styles.dragging);
+    el.querySelector('img').style.opacity = '';
+    el.querySelector('p').style.opacity = '';
+    dragRef.current = null;
+    window.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mouseup', onMouseUp);
+  };
 
   return (
     <section className={styles.about} id="about" ref={ref}>
         <div className={styles.filter}>
           {filters.map((filter) => (
-            <div key={filter.name}>
-              <label htmlFor={filter.name}>{filter.name}</label>
+            <div key={filter.name} className={styles.filterItem}>
               <input id={filter.name} onChange={() => {
                   setFilter((prev) => prev.map((f) => 
                     f.name === filter.name ? {...f, active: !f.active} : f
                   ));
                 }} type="checkbox" checked={filter.active}/>
+                {<FaCheck className={filter.active ? styles.checkedIcon : styles.uncheckedIcon}/>}
+                <label htmlFor={filter.name}>{filter.name}</label>
             </div>
           ))}
         </div>
@@ -68,28 +139,37 @@ const About = forwardRef(function About(props, ref) {
         <div className={styles.bio}>
           <h1>Education</h1>
           <img src="/umnCampus.jpeg" className={styles.school}/>
-          <h2>University of Minnesota, College of Science and Engineering</h2>
-          <h3>Bachelor of Science, Computer Science, GPA 3.86, Dean's List</h3>
-          <p>Relevant Coursework: 
-            C/C++, Algorithms & Program Development, 
-            Discrete Structures, Computational Linear Algebra, 
-            Machine Architecture, Advanced Programming Principles, 
-            Probability & Statistics</p>
+          <div className={styles.bioContent}>
+            <h2>University of Minnesota, College of Science and Engineering</h2>
+            <h3>Bachelor of Science, Computer Science, GPA 3.86, Dean's List</h3>
+            <p>Relevant Coursework: 
+              C/C++, Algorithms & Program Development, 
+              Discrete Structures, Computational Linear Algebra, 
+              Machine Architecture, Advanced Programming Principles, 
+              Probability & Statistics</p>
+          </div>
         </div>
         <div className={styles.skills}>
-          <h1>Skills</h1>
-          {skills.map((skill) =>
-            <div key={skill.name} className={styles.skillPill}>
-              <skill.icon className={styles.skillIcon}/>
-              <h1>{skill.name}</h1>
-            </div>
-          )}
+          <h1 className={styles.skillsName}>Skills</h1>
+          <div className={styles.skillItems}>
+            {shownSkills.map((skill) =>
+              <div key={skill.name} className={styles.skillPill}>
+                <skill.icon className={styles.skillIcon}/>
+                <h1>{skill.name}</h1>
+              </div>  
+            )}
+          </div>
         </div>
-        <div className={styles.fun}>
+        <div className={styles.fun} ref={containerRef}>
           <h1>Me</h1>
-          {me.map((item) =>
-            <div key={item} className={styles.funItem}>
-              <img src={item} className={styles.funImg}/>
+          {me.map((item, index) =>
+            <div key={item.img} className={styles.funItem} ref={el => itemRefs.current[index] = el}
+            onMouseEnter={() => setMeItem(index)} 
+            onMouseLeave={() => setMeItem(null)} 
+            onMouseDown={(e) => onMouseDown(e,index)}
+            style={{ zIndex: meItem === index ? 10 : 1 }}>
+              <img src={item.img} className={`${styles.funImg} ${meItem === index ? styles.hidden : ''}`}/>
+              <p className={`${styles.funDesc} ${meItem === index ? '' : styles.hidden}`}>{item.desc}</p>
             </div>
           )}
         </div>

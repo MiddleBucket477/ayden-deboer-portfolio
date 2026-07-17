@@ -2,25 +2,75 @@
   position: relative;
   z-index: 1;
   background-color: #000000;
-  height: 100vh;
-  margin-top: 250vh; 
+  height: 125vh;
+  margin-top: 20vh; 
+  background: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
 }
 .filter {
   position: absolute;
   z-index: 1;
   padding: 20px;
   right: 0;
+  top: 0;
   width: hug;
   height: hug;
   flex-direction: column;
   display: flex;
   justify-content: space-between;
-  border: 2px solid red;
+  gap: 10px;
+}
+.filterItem label{
+  font-family: 'inter';
+  font-size: 20px;
+}
+.filterItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+}
+.filterItem input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  background-color: rgb(19, 19, 19);
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  filter:
+    drop-shadow(1px 1px 0 hsl(0, 0%, 20%))
+    drop-shadow(1px 1px 0 hsl(0, 0%, 20%))
+    drop-shadow(1px 1px 0 hsl(0, 0%, 20%))
+    drop-shadow(1px 1px 0 hsl(0, 0%, 20%));
+}
+.checkedIcon {
+  position: absolute;
+  left: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  filter:
+    drop-shadow(-1px -1px 1px hsl(119, 100%, 50%))
+    drop-shadow(1px 1px 1px hsl(0, 0%, 0%))
+    drop-shadow(0 0 4px #fff)
+    drop-shadow(0 0 30px hsl(142, 71%, 45%));
+  pointer-events: none;
+}
+.uncheckedIcon {
+  position: absolute;
+  left: 2px;
+  font-size: 20px;
+  color: rgb(40, 40, 40);
+  filter:
+    drop-shadow(-1px -1px 1px hsl(0, 0%, 0%))
+    drop-shadow(1px 1px 2px hsl(0, 0%, 25%));
+  pointer-events: none;
 }
 .me{
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 175px;
+  height: 175px;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 50%;
@@ -36,7 +86,12 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 15px;
+  gap: 30px;
+}
+.bioContent{
+  display:flex;
+  flex-direction: column;
+  width: 65%;
 }
 .bio h1{
   font-size: 40px;
@@ -70,26 +125,128 @@
   height: 65%;
   top: 0;
   right: 0;
-  border: 2px solid red;
+  padding: 10px;
+}
+.skillsName{
+  position: absolute;
+  display: flex;
+  top: 2%;
+  left: 38%;
+  font-size: 40px;
+  font-family: 'Orbitron';
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 1px hsl(0, 0%, 0%),
+    1px 1px 1px hsl(0, 0%, 40%),
+    0 0 4px rgba(255, 255, 255, 0.6),
+    0 0 20px rgb(72, 255, 0);
+}
+.skillItems{
+  position: absolute;
+  padding: 40px 10px;
+  width:80%;
+  height: 80%;
+  display: grid;
+  align-content: start;
+  grid-template-columns: repeat(4, 170px);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  bottom: -5%;
+  left: 3%;
 }
 .skillPill{
-
+  background-color: rgb(14, 14, 14);
+  width: 170px;
+  height: 60px;
+  gap: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px rgb(49, 49, 49);
+  transition: 0.5s;
+}
+.skillPill:hover{
+  transform: scale(1.2);
 }
 .skillIcon{
-
+  font-size: 40px;
   border-radius: 50%;
+  filter:
+    drop-shadow(1px 1px 0 hsl(119, 100%, 50%))
+    drop-shadow(0 0 4px #fff)
+    drop-shadow(0 0 30px hsl(142, 71%, 45%)); 
+}
+.skillItems h1{
+  font-size: 15px;
+  font-family: 'Audiowide';
 }
 .fun{
   position: absolute;
   width: 100%;
-  height: 35%;
+  height: 30%;
   bottom: 0;
-  border: 2px solid red;
+}
+.fun h1{
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+    font-size: 40px;
+  font-family: 'Orbitron';
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 1px hsl(0, 0%, 0%),
+    1px 1px 1px hsl(0, 0%, 40%),
+    0 0 4px rgba(255, 255, 255, 0.6),
+    0 0 20px rgb(72, 255, 0);
 }
 .funItem{
-
+  position: absolute;
+  overflow: hidden;
+  transition: transform 0.5s;
+  width: 150px;
+  height: 150px;
+  background: rgb(0, 0, 0);
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px rgb(33, 33, 33);
+  box-shadow: 2px 2px 2px rgb(33, 33, 33);
+  box-shadow: 4px 3px 3px rgb(33, 33, 33);
+  box-shadow: 6px 4px 4px rgb(33, 33, 33);
+}
+.funItem:hover{
+  position: relative;
+  overflow: hidden;
+  transform: scale(2);
 }
 .funImg{
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  opacity: 1;
+  transition: opacity 0.5s;
 }
+.funDesc {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  font-size: 12px;
+  font-family: 'Inter';
+  background: rgba(0, 0, 0, 0.75);
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.hidden {
+  opacity: 0;
+}
+.dragging{
+  transform: scale(1.25) !important;
+}
+

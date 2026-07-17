@@ -16,6 +16,8 @@ export default function Home() {
 
   const [activeSection, setActiveSection] = useState('home');
 
+  const scrollTo = (ref) => ref.current.scrollIntoView({ behavior: 'smooth' });
+
   useEffect(() => {
     const intersecting = new Set();
 
@@ -32,21 +34,35 @@ export default function Home() {
 
         const order = ['projExper', 'about', 'contact'];
         const active = order.find(id => intersecting.has(id));
-        setActiveSection(active ?? 'home');
-      }, { threshold: 0.5}
+        if (active) setActiveSection(active);
+        else if (window.scrollY < 100) setActiveSection('home');
+      }, { threshold: 0.1}
     );
 
     scrollObserver.observe(projExperRef.current);
     scrollObserver.observe(aboutRef.current);
     scrollObserver.observe(contactRef.current);
 
-    return () => scrollObserver.disconnect();
+    const onScroll = () => {
+      if (window.scrollY < 100) setActiveSection('home');
+    };
+    window.addEventListener('scroll', onScroll);
+
+    return () => { scrollObserver.disconnect(); window.removeEventListener('scroll', onScroll); };
 
   }, []);
   
   return (
     <>
-      <Navbar activeSection={activeSection}/>
+      <Navbar 
+        activeSection={activeSection}
+        onProjExper={() => scrollTo(projExperRef)}
+        onAbout={() => {
+          const top = aboutRef.current.getBoundingClientRect().top + window.scrollY - 150;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }}
+        onContact={() => scrollTo(contactRef)}
+      />
       <Hero/>
       <ProjExper ref={projExperRef}/>
       <About ref={aboutRef}/>
