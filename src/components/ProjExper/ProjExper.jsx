@@ -87,8 +87,10 @@ const ProjExper = forwardRef(function ProjExper(props, ref) {
 
   return (
     <section className={styles.projExper} id="projExper" ref={ref}>
+        <h1 className={styles.heading}>Projects & Experience</h1>
+        <div className={styles.projExperCards}>
         {cards.map((card) => <ProjExperCard key={card.name} card={card}/>)}
-        
+        </div>
     </section>
   );
 });

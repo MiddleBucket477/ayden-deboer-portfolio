@@ -1,7 +1,61 @@
-.contact {
+.contactPage {
   position: relative;
   z-index: 1;
-  background-color: #000000;
-  height: 100vh;
-  margin-top: 400vh; 
+  height: 30vh;
+  margin-top: 70vh; 
+  padding-top: 10px;
+}
+.heading{
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-family: 'Orbitron';
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 1px hsl(0, 0%, 0%),
+    1px 1px 1px hsl(0, 0%, 40%),
+    0 0 4px rgba(255, 255, 255, 0.6),
+    0 0 20px rgb(72, 255, 0);
+}
+.contacts {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+  height: 80%;
+  bottom: 0;
+}
+.contact{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+}
+.contact a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+.contactIcon{
+  display: flex;
+  width: 125px;
+  height: auto;
+  filter:
+    drop-shadow(1px 1px 0 hsl(119, 100%, 50%))
+    drop-shadow(0 0 4px #fff)
+    drop-shadow(0 0 30px hsl(142, 71%, 45%)); 
+}
+.contact h1{
+  font-size: 25px;
+  font-family: 'Orbitron'
 }

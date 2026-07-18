@@ -86,12 +86,13 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 30px;
+  gap: 60px;
 }
 .bioContent{
-  display:flex;
+  display: flex;
   flex-direction: column;
   width: 65%;
+  gap: 30px;
 }
 .bio h1{
   font-size: 40px;
@@ -194,7 +195,7 @@
   top: -20%;
   left: 50%;
   transform: translateX(-50%);
-    font-size: 40px;
+  font-size: 40px;
   font-family: 'Orbitron';
   font-weight: bold;
   text-shadow:

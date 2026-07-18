@@ -1,10 +1,10 @@
 import { forwardRef, useState, useRef, useEffect } from 'react';
 
 import { TbBrandCpp, TbCircleLetterC, TbBrandJavascript, TbBrandHtml5, TbBrandCss3, TbBrandVscode, TbBinaryTree2, TbAirBalloon, TbBrandMatrix } from "react-icons/tb";
-import { FaPython, FaJava, FaGithub, FaDocker, FaLinux, FaCheck } from "react-icons/fa";
+import { FaPython, FaJava, FaGithub, FaDocker, FaLinux, FaCheck, FaLinkedin, FaDiscord, FaSteam } from "react-icons/fa";
 import { SiUnrealengine, SiBlueprint, SiThealgorithms } from "react-icons/si";
 import { GiArtificialHive } from "react-icons/gi";
-import { MdAnimation } from "react-icons/md";
+import { MdAnimation, MdEmail } from "react-icons/md";
 import { PiDotsNineBold, PiTreeStructure } from "react-icons/pi";
 import { LuAxis3D } from "react-icons/lu";
 import { GrInherit } from "react-icons/gr";
@@ -49,12 +49,12 @@ const About = forwardRef(function About(props, ref) {
 
   const shownSkills = skills.filter((skill) => filters.find(f => f.name === skill.category && f.active))
 
-  const me = [{img: "cross.png", desc:"I am a Christian and do all my work for the glory of God.", x: 40, y: 20, vx: 0.8, vy: 1.4},
-    {img: "spikeball.png", desc:"I love spikeball, one of my favorite outdoor summer games to play.", x: 620, y: 55, vx: -1.7, vy: 0.7},
-    {img: "basketball.png", desc:"I've played basketball since I was in elementary school, holds a special place in my life.", x: 310, y: 130, vx: 1.1, vy: -1.5},
-    {img: "volleyball.png", desc:"Volleyball is one my recent interests, at the end of high school I started playing and loved it.", x: 780, y: 30, vx: -0.8, vy: 1.8},
-    {img: "videogames.png", desc:"Video games is a hobby and passion of mine, I've played them all my life and loved building my own.", x: 150, y: 110, vx: 1.8, vy: -0.9},
-    {img: "marriage.png", desc:"My wife is the most important person in my life and we've been married since August 2026.", x: 500, y: 90, vx: -1.4, vy: -1.1}]
+  const me = [{img: "cross.png", desc:"I am a Christian and do all my work for the glory of God.", x: 40, y: 20, vx: 0.4, vy: 1.0},
+    {img: "spikeball.png", desc:"I love spikeball, one of my favorite outdoor summer games to play.", x: 620, y: 55, vx: -1.3, vy: 0.3},
+    {img: "basketball.png", desc:"I've played basketball since I was in elementary school, holds a special place in my life.", x: 310, y: 130, vx: 0.7, vy: -1.1},
+    {img: "volleyball.png", desc:"Volleyball is one my recent interests, at the end of high school I started playing and loved it.", x: 780, y: 30, vx: -0.4, vy: 1.4},
+    {img: "videogames.png", desc:"Video games is a hobby and passion of mine, I've played them all my life and loved building my own.", x: 150, y: 110, vx: 1.4, vy: -0.5},
+    {img: "marriage.png", desc:"My wife is the most important person in my life and we've been married since August 2026.", x: 500, y: 90, vx: -1.0, vy: -0.7}]
 
   const meItemMove = useRef(me); 
   const itemRefs = useRef([]);
@@ -73,9 +73,9 @@ const About = forwardRef(function About(props, ref) {
         item.x = item.x + item.vx;
         item.y = item.y + item.vy;
         if (item.x <= 0) { item.x = 0; item.vx *= -1; };
-        if (item.x >= bounds.width - 100) { item.x = bounds.width - 100; item.vx *= -1; };
+        if (item.x >= bounds.width - 150) { item.x = bounds.width - 150; item.vx *= -1; };
         if (item.y <= 0) { item.y = 0; item.vy *= -1; };
-        if (item.y >= bounds.height - 100) { item.y = bounds.height - 100; item.vy *= -1; };
+        if (item.y >= bounds.height - 150) { item.y = bounds.height - 150; item.vy *= -1; };
         itemRefs.current[index].style.left = `${item.x}px`;
         itemRefs.current[index].style.top = `${item.y}px`;
       }); 

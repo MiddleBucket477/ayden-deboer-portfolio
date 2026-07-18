@@ -56,7 +56,10 @@ export default function Home() {
     <>
       <Navbar 
         activeSection={activeSection}
-        onProjExper={() => scrollTo(projExperRef)}
+        onProjExper={() => {
+          const top = projExperRef.current.getBoundingClientRect().top + window.scrollY + 140;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }}
         onAbout={() => {
           const top = aboutRef.current.getBoundingClientRect().top + window.scrollY - 150;
           window.scrollTo({ top, behavior: 'smooth' });

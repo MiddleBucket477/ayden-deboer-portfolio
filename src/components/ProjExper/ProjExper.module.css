@@ -1,13 +1,31 @@
 .projExper {
   position: relative;
   z-index: 1;
-  padding-top: 200px;
+  padding-top: 50px;
   padding-bottom: 200px;
-  height: 140vh;
+  height: 180vh;
   margin-top: 100vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  background: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+.heading{
+  font-size: 40px;
+  font-family: 'Orbitron';
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 1px hsl(0, 0%, 0%),
+    1px 1px 1px hsl(0, 0%, 40%),
+    0 0 4px rgba(255, 255, 255, 0.6),
+    0 0 20px rgb(72, 255, 0);
+}
+.projExperCards{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 150px;
-  background: linear-gradient(to bottom, transparent, black 18%, black 85%, transparent);
+  align-content: center;
+  gap: 100px 150px;
 }
