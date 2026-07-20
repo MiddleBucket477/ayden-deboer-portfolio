@@ -12,7 +12,7 @@
    transform-style: preserve-3d;
 }
 .cardContainer:hover > .card{
-    cursor: pointer;
+    cursor: default;
     transform: rotateY(180deg);
 }
 .frontCard, .backCard{

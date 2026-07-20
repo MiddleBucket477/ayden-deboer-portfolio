@@ -221,6 +221,7 @@
   position: relative;
   overflow: hidden;
   transform: scale(2);
+  cursor: pointer;
 }
 .funImg{
   width: 100%;
