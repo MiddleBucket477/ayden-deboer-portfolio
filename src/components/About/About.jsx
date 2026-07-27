@@ -1,14 +1,13 @@
 import { forwardRef, useState, useRef, useEffect } from 'react';
 
 import { TbBrandCpp, TbCircleLetterC, TbBrandJavascript, TbBrandHtml5, TbBrandCss3, TbBrandVscode, TbBinaryTree2, TbAirBalloon, TbBrandMatrix } from "react-icons/tb";
-import { FaPython, FaJava, FaGithub, FaDocker, FaLinux, FaCheck, FaLinkedin, FaDiscord, FaSteam } from "react-icons/fa";
+import { FaPython, FaJava, FaGithub, FaDocker, FaLinux, FaCheck, FaReact } from "react-icons/fa";
 import { SiUnrealengine, SiBlueprint, SiThealgorithms } from "react-icons/si";
 import { GiArtificialHive } from "react-icons/gi";
-import { MdAnimation, MdEmail } from "react-icons/md";
+import { MdAnimation } from "react-icons/md";
 import { PiDotsNineBold, PiTreeStructure } from "react-icons/pi";
 import { LuAxis3D } from "react-icons/lu";
 import { GrInherit } from "react-icons/gr";
-import { VscDebug } from "react-icons/vsc";
 
 import styles from './About.module.css'
 
@@ -29,6 +28,7 @@ const About = forwardRef(function About(props, ref) {
     {category: "Code Languages", name: "JavaScript", icon: TbBrandJavascript },
     {category: "Code Languages", name: "HTML", icon: TbBrandHtml5 },
     {category: "Code Languages", name: "CSS", icon: TbBrandCss3 },
+    {category: "Code Languages", name: "React", icon: FaReact},
     {category: "Software Tools", name: "GitHub", icon: FaGithub},
     {category: "Software Tools", name: "Docker", icon: FaDocker },
     {category: "Software Tools", name: "VSCode", icon: TbBrandVscode},
@@ -44,8 +44,7 @@ const About = forwardRef(function About(props, ref) {
     {category: "Concepts", name: "OOP", icon: GrInherit},
     {category: "Concepts", name: "Data Structures", icon: PiTreeStructure},
     {category: "Concepts", name: "Algorithms", icon: SiThealgorithms},
-    {category: "Concepts", name: "Linear Algebra", icon: TbBrandMatrix},
-    {category: "Concepts", name: "Debugging", icon: VscDebug}]
+    {category: "Concepts", name: "Linear Algebra", icon: TbBrandMatrix}]
 
   const shownSkills = skills.filter((skill) => filters.find(f => f.name === skill.category && f.active))
 
