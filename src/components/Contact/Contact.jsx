@@ -9,7 +9,7 @@ const Contact = forwardRef(function Contact(props, ref) {
 
   const contacts = [{name: "Email", icon: MdEmail, url: "mailto:aadeboer05@gmail.com"}, 
                   {name: "LinkedIn", icon: FaLinkedin, url: "https://www.linkedin.com/in/ayden-deboer/"},
-                  {name: "Resume", icon: IoIosDocument, url: "Resume.pdf"},
+                  {name: "Resume", icon: IoIosDocument, url: "Ayden_Resume.pdf"},
                   {name: "GitHub", icon: FaGithub, url: "https://github.com/middlebucket477"},
                   {name: "Discord", icon: FaDiscord, url: "https://discordapp.com/users/781710514652184618"},
                   {name: "Steam Game", icon: FaSteam, url: "https://store.steampowered.com/app/4051050/Genesis/"}];
